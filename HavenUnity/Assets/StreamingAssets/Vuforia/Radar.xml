@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="44317203_164136647863125_772694990559117312_n" size="0.400000 0.711111" />
+    <ImageTarget name="tiger-of-sweden" size="1.000000 0.750000" />
+    <ImageTarget name="tiger-of-sweden-cropped" size="1.000000 1.809658" />
+    <ImageTarget name="moderna-review" size="1.000000 1.333333" />
+    <ImageTarget name="moderna-review-cropped" size="1.000000 1.840838" />
+    <ImageTarget name="booking" size="1.000000 0.750000" />
+    <ImageTarget name="booking-cropped" size="0.800000 1.465763" />
+  </Tracking>
+</QCARConfig>
