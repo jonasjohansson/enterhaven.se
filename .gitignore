@@ -36,3 +36,4 @@ sysinfo.txt
 *.unitypackage
 HavenUnity/.DS_Store
 HavenApp
+HavenUnity/Assets/.DS_Store
