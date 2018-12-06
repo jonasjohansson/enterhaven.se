@@ -7,56 +7,12 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
-using System.Collections;
 using Vuforia;
-
-public static class AudioFadeScript
-{
-    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
-    {
-        float startVolume = audioSource.volume;
-        Debug.Log("fade out");
-        Debug.Log(startVolume);
-
-        while (audioSource.volume > 0)
-        {
-            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
-            Debug.Log(audioSource.volume);
-            yield return null;
-        }
-
-        audioSource.Stop();
-        audioSource.volume = startVolume;
-
-        Debug.Log("did fade out");
-    }
-
-    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
-    {
-        float startVolume = 0.2f;
-        Debug.Log("fade in");
-
-        audioSource.volume = 0;
-        audioSource.Play();
-
-        while (audioSource.volume < 1.0f)
-        {
-            audioSource.volume += startVolume * Time.deltaTime / FadeTime;
-            Debug.Log(audioSource.volume);
-
-            yield return null;
-        }
-
-        audioSource.volume = 1f;
-
-        Debug.Log("did fade in");
-    }
-}
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
-/// 
-/// Changes made to this file could be overwritten when upgrading the Vuforia version. 
+///
+/// Changes made to this file could be overwritten when upgrading the Vuforia version.
 /// When implementing custom event handler behavior, consider inheriting from this class instead.
 /// </summary>
 public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
@@ -64,6 +20,8 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     #region PROTECTED_MEMBER_VARIABLES
 
     protected TrackableBehaviour mTrackableBehaviour;
+    protected TrackableBehaviour.Status m_PreviousStatus;
+    protected TrackableBehaviour.Status m_NewStatus;
 
     #endregion // PROTECTED_MEMBER_VARIABLES
 
@@ -94,6 +52,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         TrackableBehaviour.Status previousStatus,
         TrackableBehaviour.Status newStatus)
     {
+        m_PreviousStatus = previousStatus;
+        m_NewStatus = newStatus;
+
         if (newStatus == TrackableBehaviour.Status.DETECTED ||
             newStatus == TrackableBehaviour.Status.TRACKED ||
             newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
@@ -137,16 +98,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
-
-        // Play audio
-        var audioSource = mTrackableBehaviour.gameObject.GetComponentInChildren<AudioSource>();
-        Debug.Log(audioSource);
-        if (audioSource != null)
-        {
-            Debug.Log("play audio");
-            Debug.Log(audioSource);
-            StartCoroutine(AudioFadeScript.FadeIn(audioSource, 3.0f));
-        }
     }
 
 
@@ -167,14 +118,6 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
-
-        // Stop audio
-        var audioSource = mTrackableBehaviour.gameObject.GetComponentInChildren<AudioSource>();
-        UnityEngine.Debug.Log(audioSource);
-        if (audioSource != null)
-        {
-            StartCoroutine(AudioFadeScript.FadeOut(audioSource, 3.0f));
-        }
     }
 
     #endregion // PROTECTED_METHODS
