@@ -6,26 +6,27 @@
 	<script src="https://unpkg.com/three@0.95.0/examples/js/libs/inflate.min.js"></script>
 </head>
 <body style="margin:0;">
+
+	<!-- 
+
+		https://github.com/artoolkit/artoolkit5/tree/master/doc/patterns/Matrix%20code%203x3%20(72dpi)
+
+	-->
+
 	<a-scene embedded arjs="
 		debugUIEnabled: true; 
-		detectionMode: mono; 
+		detectionMode: mono_and_matrix; 
 		maxDetectionRate: 30;
 		sourceType: webcam;
-		XsourceType: image;
-		XcanvasWidth: 240;
-		XcanvasHeight: 180;
-		cameraParametersUrl: ./assets/ar/camera_para.dat">
+		cameraParametersUrl: ./assets/ar/camera_para.dat"
+		vr-mode-ui="enabled: false">
 
 		<a-assets>
 		</a-assets>
 
-		<a-marker type="pattern" url="./assets/ar/ice-marker-2.patt">
-			<a-box position='0 0.5 0' material='color: green;'></a-box>
-		</a-marker>
-
-		<a-marker type="pattern" url="./assets/ar/pattern-marker-vd-3.patt">
-			<a-box position='0 0.5 0' material='color: red;'></a-box>
-		</a-marker>
+	    <a-marker type="barcode" value="5" size="0.2">
+	        <a-box></a-box>
+	    </a-marker>
 
 		<a-entity camera></a-entity>
 	</a-scene>
