@@ -39,3 +39,4 @@ HavenApp
 HavenUnity/Assets/.DS_Store
 
 .DS_Store
+node_modules
