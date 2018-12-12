@@ -17,6 +17,8 @@ const sources = {
 let context
 let volume
 
+let hasStarted = false
+
 /**
  * Returns the full URL to a source with a given filename
  */
@@ -131,7 +133,12 @@ async function prepareFullScore() {
  *
  */
 async function startSoundscape() {
+  if (hasStarted === true) {
+    return
+  }
+
   try {
+    hasStarted = true
     await setupAudioChain()
 
     const intro = await startIntro()
