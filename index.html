@@ -4,14 +4,21 @@
 	<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 	<script src="https://unpkg.com/aframe-extras@4.1.2/dist/aframe-extras.loaders.min.js"></script>
 	<script src="https://unpkg.com/three@0.95.0/examples/js/libs/inflate.min.js"></script>
+  <script src="assets/js/StartAudioContext.js"></script>
+  <script src="assets/js/getAudioContext.js"></script>
+  <script src="assets/js/soundscape.js?v=2"></script>
 </head>
 <body style="margin:0;">
 
-	<h1>Haven</h1>
+  <div style="position: fixed; bottom: 0; z-index: 10;">
+  	<h1>Haven</h1>
 
-	<p>Introduction</p>
+  	<p>Introduction</p>
 
-	<!-- 
+    <button onclick="window.startSoundscape()">Start</button>
+  </div>
+
+	<!--
 
 		https://github.com/artoolkit/artoolkit5/tree/master/doc/patterns/Matrix%20code%203x3%20(72dpi)
 
@@ -24,8 +31,8 @@
 	-->
 
 	<a-scene embedded arjs="
-		debugUIEnabled: true; 
-		detectionMode: mono_and_matrix; 
+		debugUIEnabled: true;
+		detectionMode: mono_and_matrix;
 		maxDetectionRate: 30;
 		sourceType: webcam;
 		cameraParametersUrl: camera_para.dat"
