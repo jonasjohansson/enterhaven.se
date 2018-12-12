@@ -65,8 +65,7 @@ function getLoopingAudioNode(audioBuffer) {
 async function fetchAudioNodeFromUrl(url) {
   const audioData = await fetchSource(url)
   const audioBuffer = await decodeAudio(audioData)
-  const audioNode = await getLoopingAudioNode(audioBuffer)
-  console.log({ url, audioData, audioBuffer, audioNode })
+  const audioNode = getLoopingAudioNode(audioBuffer)
   return audioNode
 }
 
@@ -95,9 +94,9 @@ async function setupAudioChain() {
 }
 
 async function startIntro() {
-  const introNode = await fetchAudioNodeFromUrl(
-    getSourceUrl(sources[Source.INTRO].filename)
-  )
+  const introAudioData = await introFetchPromise
+  const introAudioBuffer = await decodeAudio(introAudioData)
+  const introNode = getLoopingAudioNode(introAudioBuffer)
 
   const introVolume = context.createGain()
   introVolume.gain.setValueAtTime(0, context.currentTime)
@@ -155,5 +154,12 @@ async function startSoundscape() {
     console.log(err);
   }
 }
+
+// This little trick here is done to preload the audio whilst
+// the context has not yet been set up. This way, when the user
+// taps the enter button, audio will start playing more quickly.
+let introFetchPromise = fetchSource(
+  getSourceUrl(sources[Source.INTRO].filename)
+)
 
 window.startSoundscape = startSoundscape
