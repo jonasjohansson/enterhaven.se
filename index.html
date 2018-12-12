@@ -1,27 +1,38 @@
-<!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns#">
+<html>
 <head>
-	<title>Haven AR</title>
-	<meta charset="UTF-8">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="">
-	<meta property="og:url" content="">
-	<meta property="og:image" content="">
-	<meta name="description" property="og:description" content="">
-	<meta name="viewport" content="width=device-width,user-scalable=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png">
-	<link rel="manifest" href="./assets/icons/site.webmanifest">
-	<link rel="mask-icon" href="./assets/icons/safari-pinned-tab.svg" color="#000000">
-	<link rel="shortcut icon" href="./assets/icons/favicon.ico">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-config" content="./assets/icons/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="./assets/style.css">
-	<script type="text/javascript" src="./assets/app.js"></script>
+	<script src="https://unpkg.com/aframe@0.8.2/dist/aframe-master.js"></script>
+	<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+	<script src="https://unpkg.com/aframe-extras@4.1.2/dist/aframe-extras.loaders.min.js"></script>
+	<script src="https://unpkg.com/three@0.95.0/examples/js/libs/inflate.min.js"></script>
 </head>
-<body>
+<body style="margin:0;">
+
+	<h1>Haven</h1>
+
+	<p>Introduction</p>
+
+	<!-- 
+
+		https://github.com/artoolkit/artoolkit5/tree/master/doc/patterns/Matrix%20code%203x3%20(72dpi)
+
+	-->
+
+	<a-scene embedded arjs="
+		debugUIEnabled: true; 
+		detectionMode: mono_and_matrix; 
+		maxDetectionRate: 30;
+		sourceType: webcam;
+		cameraParametersUrl: camera_para.dat"
+		vr-mode-ui="enabled: false">
+
+		<a-assets>
+		</a-assets>
+
+	    <a-marker type="barcode" value="5" size="0.2">
+	        <a-box></a-box>
+	    </a-marker>
+
+		<a-entity camera></a-entity>
+	</a-scene>
 </body>
+</html>
