@@ -1,7 +1,7 @@
 @import url('https://rawgit.com/jonasjohansson/template/master/reset.css');
 
 html {
-	font: 24px/1.2 BlinkMacSystemFont, system-ui, -apple-system;
+	font: 20px/1.25 BlinkMacSystemFont, system-ui, -apple-system;
 }
 
 #intro {
