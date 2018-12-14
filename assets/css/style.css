@@ -1,13 +1,18 @@
 @import url('https://rawgit.com/jonasjohansson/template/master/reset.css');
 
+:root {
+	--base: 1.2rem;
+	--color: #3c4f5d;
+}
+
 html {
 	font: 16px/1.425 BlinkMacSystemFont, system-ui, -apple-system;
 	background: rgba(239, 244, 247, 0.9);
-	color: #3c4f5d;
+	color: var(--color);
 }
 
 #intro {
-	padding: 2rem;
+	padding: var(--base);
 }
 
 #intro.fade-out {
@@ -16,16 +21,15 @@ html {
 }
 
 button {
+	cursor: pointer;
 	display: block;
-	padding: 16px 40px;
-	border: none;
-	border-radius: 40px;
+	padding: var(--base);
 	outline: none;
-	background: #3c4f5d;
-	color: #d6ecfb;
-	font-size: 16px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1rem;
+	font-size: inherit;
+	margin: var(--base) auto;
+	border: none;
+	border-radius: var(--base);
 	text-transform: uppercase;
+	background: var(--color);
+	color: white;
 }
