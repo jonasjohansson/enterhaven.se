@@ -1,83 +1,29 @@
 <html>
 <head>
+	<meta name="viewport" content="width=device-width,user-scalable=no">
 	<script src="https://unpkg.com/aframe@0.8.2/dist/aframe-master.js"></script>
 	<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 	<script src="https://unpkg.com/aframe-extras@4.1.2/dist/aframe-extras.loaders.min.js"></script>
 	<script src="https://unpkg.com/three@0.95.0/examples/js/libs/inflate.min.js"></script>
-  <script src="assets/js/StartAudioContext.js"></script>
-  <script src="assets/js/getAudioContext.js"></script>
-  <script src="assets/js/soundscape.es5.js?v=4"></script>
-
-  <script>
-  function enterHaven() {
-    var $intro = document.querySelector('#intro')
-    $intro.classList.add('fade-out')
-
-    window.startSoundscape()
-  }
-  </script>
-
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    }
-
-    #intro {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 10;
-      padding: 40px;
-      background: rgba(239, 244, 247, 0.9); /* #eff4f7; */
-      color: #3c4f5d;
-      font-size: 16px;
-      transition: oapcity 2s;
-    }
-
-    #intro.fade-out {
-      /*opacity: 0;*/
-      /*pointer-events: none;*/
-    }
-
-    button {
-      display: block;
-      padding: 16px 40px;
-      border: none;
-      border-radius: 40px;
-      outline: none;
-      background: #3c4f5d;
-      color: #d6ecfb;
-      font-size: 16px;
-    }
-  </style>
+	<script src="assets/js/StartAudioContext.js"></script>
+	<script src="assets/js/getAudioContext.js"></script>
+	<script src="assets/js/soundscape.es5.js?v=4"></script>
+	<script src="assets/js/app.js"></script>
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-
-  <div id="intro">
-  	<p>Welcome to Haven, an Icehotel suite built by Jonas, Jordi and Lukas. For this room we have placed Augmented Reality markers which will be activated in the weeks to follow. Until then please enjoy the soundtrack to the room made by Alexander.</p>
-    <button onclick="enterHaven()" style="margin: 0 auto;">Play Haven music</button>
-  </div>
+	<div id="intro">
+		<p>Welcome to Haven, an Icehotel suite built by Jonas, Jordi and Lukas. For this room we have placed Augmented Reality markers which will be activated in the weeks to follow. Until then please enjoy the soundtrack to the room made by Alexander.</p>
+		<button onclick="enterHaven()" style="margin: 0 auto;">Play Haven music</button>
+  	</div>
 
 	<!--
-
-		https://github.com/artoolkit/artoolkit5/tree/master/doc/patterns/Matrix%20code%203x3%20(72dpi)
-
-        http://chev.me/arucogen/
-
-        https://jeromeetienne.github.io/AR.js/three.js/examples/trackingbackend-switch.html?aruco
-
-        https://martyboggs.github.io/aruco-marker-example/
-
+	https://github.com/artoolkit/artoolkit5/tree/master/doc/patterns/Matrix%20code%203x3%20(72dpi)
+	http://chev.me/arucogen/
+	https://jeromeetienne.github.io/AR.js/three.js/examples/trackingbackend-switch.html?aruco
+	https://martyboggs.github.io/aruco-marker-example/
 	-->
-
+	
 	<!-- <a-scene embedded arjs="
 		debugUIEnabled: true;
 		detectionMode: mono_and_matrix;
@@ -89,22 +35,19 @@
 		<a-assets>
 		</a-assets>
 
-	    <a-marker type="barcode" value="5" size="0.2">
-	        <a-box></a-box>
-	    </a-marker>
+		<a-marker type="barcode" value="5" size="0.2">
+			<a-box></a-box>
+		</a-marker>
 
 		<a-entity camera></a-entity>
 	</a-scene> -->
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-4374117-14"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-4374117-14');
-</script>
-
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-4374117-14"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-4374117-14');
+	</script>
 </body>
 </html>
