@@ -1,6 +1,6 @@
 // Source type
 const Source = {
-  INTRO: 'INTRO',
+  INTRO: 'INTRO'
 };
 
 // Source URLs
@@ -10,14 +10,15 @@ const sources = {
   },
   [Source.SCORE]: {
     filename: 'ishotellet-d-1.2-128k.mp3'
-  },
+  }
 };
 
 // Audio context and nodes
-let context
-let volume
+let context;
+let volume;
 
-let hasStarted = false
+let hasStarted = false;
+let gainC = 5;
 
 /**
  * Returns the full URL to a source with a given filename
@@ -51,7 +52,7 @@ async function fetchSource(url) {
 async function decodeAudio(audioData) {
   return new Promise((resolve, reject) => {
     context.decodeAudioData(audioData, resolve, reject);
-  })
+  });
 }
 
 /**
@@ -65,17 +66,14 @@ function getLoopingAudioNode(audioBuffer) {
 }
 
 async function fetchAudioNodeFromUrl(url) {
-  const audioData = await fetchSource(url)
-  const audioBuffer = await decodeAudio(audioData)
-  const audioNode = getLoopingAudioNode(audioBuffer)
-  return audioNode
+  const audioData = await fetchSource(url);
+  const audioBuffer = await decodeAudio(audioData);
+  const audioNode = getLoopingAudioNode(audioBuffer);
+  return audioNode;
 }
 
 function fadeTo(parameter, value, duration) {
-  parameter.linearRampToValueAtTime(
-    value,
-    context.currentTime + duration / 1000
-  )
+  parameter.linearRampToValueAtTime(value, context.currentTime + duration / 1000);
 }
 
 async function setupAudioChain() {
@@ -89,44 +87,39 @@ async function setupAudioChain() {
   //
   // Doing this concurrently, to make sure the first one doesn't
   // "hijack" the user action that allows audio to play.
-  await Promise.all([
-    StartAudioContext(context),
-    StartAudioContext(THREE.AudioContext.getContext())
-  ]);
+  await Promise.all([StartAudioContext(context), StartAudioContext(THREE.AudioContext.getContext())]);
 }
 
 async function startIntro() {
-  const introAudioData = await introFetchPromise
-  const introAudioBuffer = await decodeAudio(introAudioData)
-  const introNode = getLoopingAudioNode(introAudioBuffer)
+  const introAudioData = await introFetchPromise;
+  const introAudioBuffer = await decodeAudio(introAudioData);
+  const introNode = getLoopingAudioNode(introAudioBuffer);
 
-  const introVolume = context.createGain()
-  introVolume.gain.setValueAtTime(0, context.currentTime)
-  introVolume.connect(context.destination)
+  const introVolume = context.createGain();
+  introVolume.gain.setValueAtTime(0, context.currentTime);
+  introVolume.connect(context.destination);
 
-  introNode.connect(introVolume)
+  introNode.connect(introVolume);
 
   return {
     node: introNode,
-    volume: introVolume,
-  }
+    volume: introVolume
+  };
 }
 
 async function prepareFullScore() {
-  const scoreNode = await fetchAudioNodeFromUrl(
-    getSourceUrl(sources[Source.SCORE].filename)
-  )
+  const scoreNode = await fetchAudioNodeFromUrl(getSourceUrl(sources[Source.SCORE].filename));
 
-  const scoreVolume = context.createGain()
-  scoreVolume.gain.setValueAtTime(0, context.currentTime)
-  scoreVolume.connect(context.destination)
+  const scoreVolume = context.createGain();
+  scoreVolume.gain.setValueAtTime(0, context.currentTime);
+  scoreVolume.connect(context.destination);
 
-  scoreNode.connect(scoreVolume)
+  scoreNode.connect(scoreVolume);
 
   return {
     node: scoreNode,
-    volume: scoreVolume,
-  }
+    volume: scoreVolume
+  };
 }
 
 /**
@@ -134,29 +127,28 @@ async function prepareFullScore() {
  */
 async function startSoundscape() {
   if (hasStarted === true) {
-    return
+    return;
   }
 
   try {
-    hasStarted = true
-    await setupAudioChain()
+    hasStarted = true;
+    await setupAudioChain();
 
-    const intro = await startIntro()
+    const intro = await startIntro();
 
-    intro.node.start()
-    fadeTo(intro.volume.gain, 0.15, 5000)
+    intro.node.start();
+    fadeTo(intro.volume.gain, 0.15 * gainC, 5000);
 
     // Now fetch full score et al
-    const score = await prepareFullScore()
+    const score = await prepareFullScore();
 
     // Swap audio
-    fadeTo(intro.volume.gain, 0, 10000)
-    score.node.start()
-    fadeTo(score.volume.gain, 0.2, 10000)
+    fadeTo(intro.volume.gain, 0 * gainC, 10000);
+    score.node.start();
+    fadeTo(score.volume.gain, 0.2 * gainC, 10000);
 
-    setTimeout(() => intro.node.stop(), 11000)
-  }
-  catch (err) {
+    setTimeout(() => intro.node.stop(), 11000);
+  } catch (err) {
     console.log('An error occured while rocking soundscape:');
     console.log(err);
   }
@@ -165,8 +157,6 @@ async function startSoundscape() {
 // This little trick here is done to preload the audio whilst
 // the context has not yet been set up. This way, when the user
 // taps the enter button, audio will start playing more quickly.
-let introFetchPromise = fetchSource(
-  getSourceUrl(sources[Source.INTRO].filename)
-)
+let introFetchPromise = fetchSource(getSourceUrl(sources[Source.INTRO].filename));
 
-window.startSoundscape = startSoundscape
+window.startSoundscape = startSoundscape;
