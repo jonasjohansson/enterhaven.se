@@ -1,7 +1,7 @@
 @import url('https://rawgit.com/jonasjohansson/template/master/reset.css');
 
 html {
-	font: 20px/1.25 BlinkMacSystemFont, system-ui, -apple-system;
+	font: 18px/1.25 BlinkMacSystemFont, system-ui, -apple-system;
 }
 
 #intro {
@@ -14,7 +14,7 @@ html {
 	padding: 40px;
 	background: rgba(239, 244, 247, 0.9); /* #eff4f7; */
 	color: #3c4f5d;
-	transition: oapcity 2s;
+	transition: opacity 2s;
 }
 
 #intro.fade-out {
