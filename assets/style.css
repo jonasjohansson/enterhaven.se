@@ -4,7 +4,7 @@
 	--base: 1.2rem;
 	--light: rgba(255, 255, 255, 0.9);
 	--dark: rgba(0, 0, 0, 1);
-	--fadeTime: 800ms;
+	--fadeTime: 500ms;
 }
 
 html {
@@ -66,7 +66,7 @@ button {
 }
 
 .fadeOut {
-	opacity: 0;
+	opacity: 0.5;
 	pointer-events: none;
 }
 
