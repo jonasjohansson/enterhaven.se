@@ -16,9 +16,12 @@
 </head>
 <body>
 	<div id="intro">
-		<p>Welcome to Haven, an ICEHOTEL suite built by <a href="https://jonasjohansson.se/">Jonas Johansson</a>, <a href="https://www.instagram.com/jordi.claramunt.art/">Jordi Claramunt</a> and <a href="http://lukaspetko.com/">Lukas Petko</a>. Inside the sanctuary we have placed Augmented Reality markers which will be unlocked and made available in the App store — Until then, press play below to hear the soundtrack made by Alexander Wallin.</p>
-		<button onclick="enterHaven()">Play Haven</button>
-		<!-- <img src="./assets/img/teamhaven.jpg"> -->
+		<p>Welcome to Haven, an Icehotel suite built by <a href="https://jonasjohansson.se/">Jonas Johansson</a>, <a href="https://www.instagram.com/jordi.claramunt.art/">Jordi Claramunt</a> and <a href="http://lukaspetko.com/">Lukas Petko</a> inspired by our passions for light, mythology and architecture. In order to continue we want to know if you a night or day visitor? Either option will begin a unique audio journey created by <a href="https://www.alexanderwallin.com/">Alexander Wallin</a>.</p>
+		<div class="buttons">
+			<button onclick="enterHaven('day')">Day</button>
+			<button onclick="enterHaven('night')">Night</button>
+		</div>
+		<p>In 2019 a custom built iOS and Android app will be released that allows you to continue exploring the space via your phone and icy augmented reality markers, but until then we hope you enjoy your stay in our haven.</p>
   	</div>
 
   	<audio src="./assets/audio/ishotellet-d-1.2-128k.mp3" playsinline loop type="audio/mp3">

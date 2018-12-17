@@ -13,12 +13,22 @@ html {
 
 #intro {
 	padding: var(--base);
+	will-transition: opacity;
+	opacity: 1;
+	transition: opacity ease-in-out 800ms;
 }
 
+#intro.fadeOut {
+	opacity: 0;
+}
+
+.buttons {
+	text-align: center;
+}
 button {
 	cursor: pointer;
-	display: block;
-	padding: var(--base);
+	display: inline-block;
+	padding: calc(var(--base) * 0.75) var(--base);
 	outline: none;
 	font-size: inherit;
 	margin: var(--base) auto;
@@ -27,4 +37,8 @@ button {
 	text-transform: uppercase;
 	background: var(--color);
 	color: white;
+}
+
+a:link {
+	text-decoration: underline;
 }
