@@ -14,14 +14,12 @@
 	<script src="./assets/js/app.js"></script>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body>
+<body class="loading">
 	<div id="intro">
-		<p>Welcome to Haven, an Icehotel suite built by <a href="https://jonasjohansson.se/">Jonas Johansson</a>, <a href="https://www.instagram.com/jordi.claramunt.art/">Jordi Claramunt</a> and <a href="http://lukaspetko.com/">Lukas Petko</a> inspired by our passions for light, mythology and architecture. In order to continue we want to know if you a night or day visitor? Either option will begin a unique audio journey created by <a href="https://www.alexanderwallin.com/">Alexander Wallin</a>. Please turn up the sound levels on your mobile device.</p>
+		<p>Welcome to Haven, an Icehotel suite by <a href="https://jonasjohansson.se/">Jonas Johansson</a>, <a href="https://www.instagram.com/jordi.claramunt.art/">Jordi Claramunt</a> and <a href="http://lukaspetko.com/">Lukas Petko</a>, inspired by our passions for light, mythology and architecture. The first secret we will unlock is a soundtrack made for this room by <a href="https://www.alexanderwallin.com/">Alexander Wallin</a>. Please turn up the sound on your mobile device.</p>
 		<div class="buttons">
-			<button onclick="enterHaven('day')">Day</button>
-			<button onclick="enterHaven('night')">Night</button>
+			<button class="fade">Play</button>
 		</div>
-		<p>In 2019 a custom built iOS and Android app will be released that allows you to continue exploring the space via your phone and icy augmented reality markers, but until then we hope you enjoy your stay in our haven.</p>
   	</div>
 
   	<audio src="./assets/audio/ishotellet-d-1.2-128k.mp3" playsinline loop type="audio/mp3">

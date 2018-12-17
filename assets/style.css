@@ -2,43 +2,79 @@
 
 :root {
 	--base: 1.2rem;
-	--color: #3c4f5d;
+	--light: rgba(255, 255, 255, 0.9);
+	--dark: rgba(0, 0, 0, 1);
+	--fadeTime: 800ms;
 }
 
 html {
-	font: 16px/1.425 BlinkMacSystemFont, system-ui, -apple-system;
-	background: rgba(239, 244, 247, 0.9);
-	color: var(--color);
+	font: 28px/1.425 'Amatic SC', BlinkMacSystemFont, system-ui, -apple-system;
+	background: var(--light);
+	color: var(--dark);
 }
+
+html.night,
+html:not(.night) button {
+	background-color: var(--dark);
+	color: var(--light);
+}
+
+a:link {
+	text-decoration: underline;
+}
+
+body {
+	will-change: opacity;
+	transition: opacity var(--fadeTime) ease-in-out;
+}
+
+body.loading {
+	opacity: 0;
+}
+
+/* main */
 
 #intro {
 	padding: var(--base);
-	will-transition: opacity;
-	opacity: 1;
-	transition: opacity ease-in-out 800ms;
-}
-
-#intro.fadeOut {
-	opacity: 0;
 }
 
 .buttons {
 	text-align: center;
 }
+
 button {
 	cursor: pointer;
 	display: inline-block;
-	padding: calc(var(--base) * 0.75) var(--base);
+	padding: calc(var(--base) * 0.25) calc(var(--base) * 0.5);
 	outline: none;
 	font-size: inherit;
+	font-family: inherit;
 	margin: var(--base) auto;
 	border: none;
-	border-radius: var(--base);
+	border-radius: calc(var(--base) * 0.5);
 	text-transform: uppercase;
-	background: var(--color);
-	color: white;
+	background: var(--light);
+	color: var(--dark);
 }
 
-a:link {
-	text-decoration: underline;
+/* classes */
+
+.fade {
+	will-change: opacity;
+	opacity: 1;
+	transition: opacity ease-in-out var(--fadeTime);
+}
+
+.fadeOut {
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* import */
+
+@font-face {
+	font-family: 'Amatic SC';
+	src: url('AmaticSC-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
 }
