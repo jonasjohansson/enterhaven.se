@@ -8,6 +8,7 @@ window.onload = () => {
 	let now = new Date();
 	let h = now.getHours();
 	if (h >= 16 || h <= 6) document.documentElement.className = 'night';
+	for (let a of document.querySelectorAll('a')) a.target = '_blank';
 };
 
 function playAudio() {
